@@ -270,11 +270,15 @@ const ConnectIMG = styled.div`
   margin-top: -100px;
 `
 
+type Data = {
+  [x: string]: string;
+}
+
 export default function Home() {
   const { register, handleSubmit } = useForm();
   const router = useRouter()
 
-  const OnSubmit  = (data) => {
+  const OnSubmit  = (data : Data) => {
     router.push(`/track/${data.serialnumber}`)
   }
 
@@ -286,7 +290,7 @@ export default function Home() {
           Package tracking made easy, 
           you just need a tracking number!
         </Title>
-        <Form onSubmit={handleSubmit(OnSubmit)} method="POST" >
+        <Form onSubmit={handleSubmit(OnSubmit )} method="POST" >
           <Input type="text" {...register("serialnumber")} placeholder='Enter up to 10 tracking numbers...' />
           <SearchButton type="submit">Track</SearchButton>
         </Form>
