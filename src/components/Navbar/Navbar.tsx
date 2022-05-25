@@ -1,10 +1,6 @@
 import Link from "next/link"
 import styled from "styled-components"
 
-const Title = styled.h1`
-  color: red;
-  font-size: 50px;
-`
 
 const Container = styled.div`
   display: flex;

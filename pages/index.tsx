@@ -271,10 +271,10 @@ const ConnectIMG = styled.div`
 `
 
 export default function Home() {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit } = useForm();
   const router = useRouter()
 
-  const OnSubmit : (data : {serialnumber : object}) => void = (data) => {
+  const OnSubmit  = (data) => {
     router.push(`/track/${data.serialnumber}`)
   }
 
