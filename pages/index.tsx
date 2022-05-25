@@ -275,9 +275,8 @@ export default function Home() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const router = useRouter()
 
-  const OnSubmit : ({serialnumber} : {serialnumber : string}) => void = ({serialnumber}) => {
-    console.log(serialnumber)
-    router.push(`/track/${serialnumber}`)
+  const OnSubmit : (data : {serialnumber : object}) => void = (data) => {
+    router.push(`/track/${data.serialnumber}`)
   }
 
   return (
