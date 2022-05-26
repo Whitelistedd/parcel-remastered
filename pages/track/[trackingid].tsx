@@ -236,7 +236,7 @@ const trackingid = ({data} : trackingid) => {
 
 export async function getServerSideProps(context : {params: {trackingid: string}}) {
 
-    const response = await fetch('http://localhost:3000/api/trackinginfo', {
+    const response = await fetch(`${process.env.NEXT_URL}/api/trackinginfo`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

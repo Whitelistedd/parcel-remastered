@@ -12,7 +12,8 @@ module.exports = {
     domains: ["www.ordertracker.com"],
   },
   env: {
-    NEXT_PUBLIC_KEY: process.env.NEXT_PUBLIC_KEY  
+    NEXT_KEY: process.env.NEXT_PUBLIC_KEY,
+    NEXT_URL: process.env.NEXT_URL
   }
 }
 

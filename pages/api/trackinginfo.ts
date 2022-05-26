@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const key = process.env.NEXT_PUBLIC_KEY
+const key = process.env.NEXT_KEY
 
 const trackingrequest = async (req : NextApiRequest, res : NextApiResponse) => {
     if (req.method !== 'POST') {
