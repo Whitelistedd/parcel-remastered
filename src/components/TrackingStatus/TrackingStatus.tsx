@@ -33,7 +33,8 @@ interface TrackingStatus {
     info : {
         status: string,
         location: string
-    }
+    },
+    key?: number
 }
 
 const TrackingStatus = ({info} : TrackingStatus) => {

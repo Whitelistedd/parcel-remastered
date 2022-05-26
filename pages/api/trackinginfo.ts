@@ -1,18 +1,7 @@
-import axios, { AxiosPromise } from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const key = process.env.ENV_LOCAL_CustomKey
-
-interface options {
-    method: string, 
-    url: string,
-    headers: {
-        "Authorization": string, "Content-Type" : string
-    }, 
-    data: {
-        trackingNumber: string
-    }
-}
 
 const trackingrequest = async (req : NextApiRequest, res : NextApiResponse) => {
     if (req.method !== 'POST') {
@@ -24,7 +13,7 @@ const trackingrequest = async (req : NextApiRequest, res : NextApiResponse) => {
 
     try {
 
-    const options : options = {
+    const options : AxiosRequestConfig = {
         method: 'post',
         url: 'https://api.ship24.com/public/v1/trackers/track',
         headers: { 

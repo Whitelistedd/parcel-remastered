@@ -175,6 +175,11 @@ interface trackingid {
     }
 }
 
+interface info {
+    status: string,
+    location: string
+}
+
 const trackingid = ({data} : trackingid) => {
     const router = useRouter()
     const {trackingid} = router.query
@@ -213,7 +218,7 @@ const trackingid = ({data} : trackingid) => {
                 </InfoWrap>
                 <StatusWrap>
                     { infoArray.length > 0 ?
-                    infoArray.map((status : object,index : number) => <TrackingStatus key={index} info={status} />)
+                    infoArray.map((info: info,index: number) => <TrackingStatus key={index} info={info} />)
                     :
                     <Info>
                         <Search />
@@ -229,7 +234,7 @@ const trackingid = ({data} : trackingid) => {
     )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context : {params: {trackingid: string}}) {
 
     const response = await fetch('http://localhost:3000/api/trackinginfo', {
         method: 'POST',
