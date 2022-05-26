@@ -181,11 +181,9 @@ interface info {
 }
 
 const trackingid = ({data} : trackingid) => {
-    const router = useRouter()
-    const {trackingid} = router.query
-    const infoArray = data?.data[0]?.events
-
-    console.log(infoArray)
+    const router = useRouter();
+    const {trackingid} = router.query;
+    const infoArray = data?.data[0]?.events;
 
     return (
         <Container>
@@ -217,7 +215,7 @@ const trackingid = ({data} : trackingid) => {
                     <QRCODE src="https://www.ordertracker.com/app/template/img/home/qr.svg" />
                 </InfoWrap>
                 <StatusWrap>
-                    { infoArray.length > 0 ?
+                    { infoArray?.length > 0 ?
                     infoArray.map((info: info,index: number) => <TrackingStatus key={index} info={info} />)
                     :
                     <Info>
@@ -236,7 +234,9 @@ const trackingid = ({data} : trackingid) => {
 
 export async function getServerSideProps(context : {params: {trackingid: string}}) {
 
-    const response = await fetch(`${process.env.NEXT_URL}/api/trackinginfo`, {
+    const url = await process.env.NEXT_PUBLIC_URL
+
+    const response = await fetch(`${url}/api/trackinginfo`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

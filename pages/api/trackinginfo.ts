@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const key = process.env.NEXT_KEY
+const key = process.env.NEXT_PUBLIC_KEY
 
 const trackingrequest = async (req : NextApiRequest, res : NextApiResponse) => {
     if (req.method !== 'POST') {
@@ -28,8 +28,9 @@ const trackingrequest = async (req : NextApiRequest, res : NextApiResponse) => {
     const response = await axios(options)
 
     res.status(200).json({data: response.data.data.trackings})
-
+    console.log(response)
     } catch(err) {
+        console.log(err)
         res.status(400).json({error: err})
     }
 }
