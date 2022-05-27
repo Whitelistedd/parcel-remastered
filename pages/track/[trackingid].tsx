@@ -215,8 +215,7 @@ interface info {
 const trackingidPage : NextPage<trackingid> = ({data}) => {
     const router = useRouter();
     const {trackingid} = router.query;
-    const infoArray = data?.data?.events;
-    console.log(data)
+    const infoArray = data?.data[0]?.events;
 
     return (
         <Container>
