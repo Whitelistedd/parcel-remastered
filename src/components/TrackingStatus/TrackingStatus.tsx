@@ -39,8 +39,6 @@ interface TrackingStatus {
 
 const TrackingStatus = ({info} : TrackingStatus) => {
 
-    console.log(info)
-
   return (
     <Container>
         <PackageStatusWrap>
