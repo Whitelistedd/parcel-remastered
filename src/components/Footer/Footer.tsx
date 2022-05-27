@@ -1,18 +1,10 @@
 import { Twitter, YouTube } from "@mui/icons-material"
 import styled from "styled-components"
+import { devices } from "../../MediaQueries"
 
 const Title = styled.h1`
   color: white;
   font-size: 30px;
-`
-
-const Container = styled.div`
-  background-color: #4C4956;
-  display: flex;
-  min-height: 45vh;
-  align-items: center;
-  justify-content: center;
-  gap: 18vw;
 `
 
 const SocialMedia = styled.div`
@@ -32,6 +24,19 @@ const PageTitle = styled.h5``
 const Page = styled.p`
   font-size: 13px;
   opacity: 0.8;
+`
+
+const Container = styled.div`
+  background-color: #4C4956;
+  display: flex;
+  min-height: 45vh;
+  align-items: center;
+  justify-content: center;
+  gap: 18vw;
+  max-width: 100%;
+  @media only screen and (max-width: ${devices.md}) {
+    flex-direction: column;
+  }
 `
 
 const Footer = () => {

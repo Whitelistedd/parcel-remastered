@@ -50,7 +50,7 @@ const SignIn = styled.button`
   font-size: 13px;
   font-weight: 700;
   color: inherit;
-  padding: 1em 1em;
+  padding: 1em 2em;
   border: none;
   transition: 400ms ease;
   border-radius: 2px;
@@ -133,10 +133,7 @@ const Navbar : React.FC<NavbarProps> = () => {
       <Container>
         <Left>
           <Link href="/">
-            <Logo>VolxenJS Tracker</Logo>
-          </Link>
-          <Link href={"/idiot"}>
-          <Button>English</Button>
+            <Logo>Volxen Tracker</Logo>
           </Link>
         </Left>
         <Menu onClick={() => toggleDrawer()}/>
@@ -158,16 +155,16 @@ const Navbar : React.FC<NavbarProps> = () => {
         </CustomDrawer>
         <Right>
           <Link href={"/idiot"}>
-          <Button>Couriers</Button>
+          <Button>Курьеры</Button>
           </Link>
           <Link href={"/idiot"}>
-          <Button>Features</Button>
+          <Button>Функции</Button>
           </Link>
           <Link href={"/idiot"}>
-          <Button>Ecommerce</Button>
+          <Button>Электронная торговля</Button>
           </Link>
           <Link href={"/idiot"}>
-          <SignIn>Sign-in/up</SignIn>
+          <SignIn>Войти</SignIn>
           </Link>
         </Right>
       </Container>

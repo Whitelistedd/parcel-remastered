@@ -1,11 +1,7 @@
 import styled from "styled-components"
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/router';
-
-const Form = styled.form`
-display: flex;
-background-color: rgb(252,252,254);
-`
+import { devices } from "../../MediaQueries";
 
 const Input = styled.input`
   padding: 2em 2em;
@@ -19,7 +15,8 @@ const Input = styled.input`
 
 const SearchButton = styled.button`
   width: 20%;
-  font-size: 1.5rem;
+  font-size: 1.2em;
+  font-weight: 600;
   background-color: inherit;
   border: none;
   transition: 400ms ease;
@@ -27,6 +24,19 @@ const SearchButton = styled.button`
     opacity: 0.7;
     transition: 400ms ease;
     cursor: pointer;
+  }
+`
+
+const Form = styled.form`
+  display: flex;
+  background-color: rgb(252,252,254);
+  @media only screen and (max-width: ${devices.md}) {
+    font-size: 0.9em;
+  }
+  @media only screen and (max-width: ${devices.sm}) {
+    ${SearchButton} {
+      width: 40%;
+    }
   }
 `
 
@@ -48,8 +58,8 @@ const Searchbar = ({className}: SearchBarProps) => {
 
     return (
         <Form className={className} onSubmit={handleSubmit(OnSubmit)} method="POST" >
-            <Input type="text" {...register("serialnumber")} placeholder='Enter up to 10 tracking numbers...' />
-            <SearchButton type="submit">Track</SearchButton>
+            <Input type="text" {...register("serialnumber")} placeholder='Введите до 10 номеров отслеживания...' />
+            <SearchButton type="submit">Oтслеживать</SearchButton>
         </Form>
     )
 }

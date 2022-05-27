@@ -5,18 +5,12 @@ import Searchbar from "../../src/components/SearchBar/Searchbar"
 import { Search } from "@mui/icons-material"
 import TrackingStatus from "../../src/components/TrackingStatus/TrackingStatus"
 import Head from "next/head"
-
-const Container = styled.div`
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #FDFCFF;
-`
+import { devices } from "../../src/MediaQueries"
+import { NextPage } from "next"
 
 const TrackingWrap = styled.div`
     display: flex;
-    width: 70%;
+    width: 70vw;
     height: 100%;
     padding: 3em 0em;
     align-items: flex-start;
@@ -33,7 +27,7 @@ const SearchWrap = styled.div`
 `
 
 const InfoWrap = styled.div`
-    width: 15%;
+    width: 13vw;
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -167,20 +161,58 @@ const Desc = styled.p`
     font-size: 1rem;
 `
 
+const Container = styled.div`
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FDFCFF;
+    @media only screen and (max-width: ${devices.lg}) {
+        ${TrackingWrap} {
+            width: 90vw;
+        }
+        ${TrackingSearchBar} {
+            width: 90%;
+        }
+        ${InfoWrap} {
+            width: 17vw;
+        }
+        ${StatusWrap} {
+            width: 100%;
+        }
+        ${TrackingNumber} {
+            font-size: 1.2em;
+        }
+    }
+    @media only screen and (max-width: ${devices.md}) {
+        ${InfoWrap} {
+            display: none;
+        }
+        ${StatusWrap} {
+            width: 100%;
+        }
+    }
+`
+
 interface trackingid {
     data: {
-        data: [
-            events: any
-        ]
+        data: [{
+                events: [{
+                    length: number,
+                    status: string,
+                    location: string,
+                }]
+            }]
     }
 }
+
 
 interface info {
     status: string,
     location: string
 }
 
-const trackingid = ({data} : trackingid) => {
+const trackingidPage : NextPage<trackingid> = ({data}) => {
     const router = useRouter();
     const {trackingid} = router.query;
     const infoArray = data?.data[0]?.events;
@@ -188,7 +220,7 @@ const trackingid = ({data} : trackingid) => {
     return (
         <Container>
             <Head>
-                <title>VolxenJS: Track Parcel</title>
+                <title>Volxen Tracker: Отследить посылку</title>
             </Head>
             <SearchWrap>
                 <TrackingSearchBar />
@@ -206,11 +238,11 @@ const trackingid = ({data} : trackingid) => {
                     </Buttons>
                     <DownloadButton>
                         <Apple />
-                        Download on the App Store
+                        Скачать в App Store
                     </DownloadButton>
                     <DownloadButton>
                         <Shop />
-                        Download on the Google Store
+                        Скачать в магазине Google
                     </DownloadButton>
                     <QRCODE src="https://www.ordertracker.com/app/template/img/home/qr.svg" />
                 </InfoWrap>
@@ -221,8 +253,8 @@ const trackingid = ({data} : trackingid) => {
                     <Info>
                         <Search />
                         <Text>
-                        <Title>No information yet</Title>
-                        <Desc>No information for this tracking number at the moment</Desc>
+                        <Title>Пока нет информации</Title>
+                        <Desc>На данный момент нет информации по этому номеру отслеживания</Desc>
                         </Text>
                     </Info>
                 }
@@ -251,4 +283,4 @@ export async function getServerSideProps(context : {params: {trackingid: string}
     }
 }
 
-export default trackingid
+export default trackingidPage
