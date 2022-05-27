@@ -111,10 +111,10 @@ const UL = styled.ul`
     height: ${CompanieImage.height};
   }
   @keyframes mymove {
-    0%    {bottom: 0px;}
-    5%    {bottom: 50px;}
-    10%   {bottom: 100px;}
-    15%   {bottom: 150px;}
+    0%    {bottom: 50px;}
+    5%    {bottom: 100px;}
+    10%   {bottom: 150px;}
+    15%   {bottom: 200px;}
     20%   {bottom: 250px;}
     25%   {bottom: 300px;}
     30%   {bottom: 350px;}
