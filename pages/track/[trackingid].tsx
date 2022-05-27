@@ -236,7 +236,7 @@ export async function getServerSideProps(context : {params: {trackingid: string}
 
     const url = await process.env.NEXT_PUBLIC_URL
 
-    const response = await fetch(`${url}/api/trackinginfo`, {
+    const response = await fetch(`https://volxenjs.vercel.app/api/trackinginfo`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

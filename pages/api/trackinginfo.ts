@@ -28,7 +28,6 @@ const trackingrequest = async (req : NextApiRequest, res : NextApiResponse) => {
     const response = await axios(options)
 
     res.status(200).json({data: response.data.data.trackings})
-    console.log(response)
     } catch(err) {
         console.log(err)
         res.status(400).json({error: err})
