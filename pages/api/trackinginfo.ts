@@ -29,7 +29,6 @@ const trackingrequest = async (req : NextApiRequest, res : NextApiResponse) => {
 
     res.status(200).json({data: response.data.data.trackings})
     } catch(err) {
-        console.log(err)
         res.status(400).json({error: err})
     }
 }
