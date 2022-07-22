@@ -8,6 +8,93 @@ import Head from "next/head"
 import { devices } from "../../src/MediaQueries"
 import { NextPage } from "next"
 
+interface trackingid {
+    data: {
+        data: [{
+                events: [{
+                    length: number,
+                    status: string,
+                    location: string,
+                }]
+            }]
+    }
+}
+interface info {
+    status: string,
+    location: string
+}
+
+const trackingidPage : NextPage<trackingid> = ({data}) => {
+    const router = useRouter();
+    const {trackingid} = router.query;
+    const infoArray = data?.data?.[0]?.events;
+
+    return (
+        <Container>
+            <Head>
+                <title>Volxen Tracker: Отследить посылку</title>
+            </Head>
+            <SearchWrap>
+                <TrackingSearchBar />
+            </SearchWrap>
+            <TrackingWrap>
+                <InfoWrap>
+                    <TrackingNumber onClick={() => router.reload()}>
+                    {trackingid}
+                    <Cached sx={{opacity: "0.7"}} />
+                    </TrackingNumber>
+                    <Buttons>
+                        <Button><Public /></Button>
+                        <Button><ContentCopy /></Button>
+                        <Button><InsertLink /></Button>
+                    </Buttons>
+                    <DownloadButton>
+                        <Apple />
+                        Скачать в App Store
+                    </DownloadButton>
+                    <DownloadButton>
+                        <Shop />
+                        Скачать в магазине Google
+                    </DownloadButton>
+                    <QRCODE src="https://www.ordertracker.com/app/template/img/home/qr.svg" />
+                </InfoWrap>
+                <StatusWrap>
+                    { infoArray?.length > 0 ?
+                    infoArray.map((info: info,index: number) => <TrackingStatus key={index} info={info} />)
+                    :
+                    <Info>
+                        <Search />
+                        <Text>
+                        <Title>Пока нет информации</Title>
+                        <Desc>На данный момент нет информации по этому номеру отслеживания</Desc>
+                        </Text>
+                    </Info>
+                }
+                </StatusWrap>
+            </TrackingWrap>
+        </Container>
+    )
+}
+
+export async function getServerSideProps(context : {params: {trackingid: string}}) {
+
+    const response = await fetch(`https://volxenjs.vercel.app/api/trackinginfo`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            trackingnumber: `${context.params.trackingid}`
+        })
+    }) 
+
+    const data = await response.json()
+
+    return {
+      props: {data: data}
+    }
+}
+
 const TrackingWrap = styled.div`
     display: flex;
     width: 70vw;
@@ -193,94 +280,5 @@ const Container = styled.div`
         }
     }
 `
-
-interface trackingid {
-    data: {
-        data: [{
-                events: [{
-                    length: number,
-                    status: string,
-                    location: string,
-                }]
-            }]
-    }
-}
-
-
-interface info {
-    status: string,
-    location: string
-}
-
-const trackingidPage : NextPage<trackingid> = ({data}) => {
-    const router = useRouter();
-    const {trackingid} = router.query;
-    const infoArray = data?.data[0]?.events;
-
-    return (
-        <Container>
-            <Head>
-                <title>Volxen Tracker: Отследить посылку</title>
-            </Head>
-            <SearchWrap>
-                <TrackingSearchBar />
-            </SearchWrap>
-            <TrackingWrap>
-                <InfoWrap>
-                    <TrackingNumber onClick={() => router.reload()}>
-                    {trackingid}
-                    <Cached sx={{opacity: "0.7"}} />
-                    </TrackingNumber>
-                    <Buttons>
-                        <Button><Public /></Button>
-                        <Button><ContentCopy /></Button>
-                        <Button><InsertLink /></Button>
-                    </Buttons>
-                    <DownloadButton>
-                        <Apple />
-                        Скачать в App Store
-                    </DownloadButton>
-                    <DownloadButton>
-                        <Shop />
-                        Скачать в магазине Google
-                    </DownloadButton>
-                    <QRCODE src="https://www.ordertracker.com/app/template/img/home/qr.svg" />
-                </InfoWrap>
-                <StatusWrap>
-                    { infoArray?.length > 0 ?
-                    infoArray.map((info: info,index: number) => <TrackingStatus key={index} info={info} />)
-                    :
-                    <Info>
-                        <Search />
-                        <Text>
-                        <Title>Пока нет информации</Title>
-                        <Desc>На данный момент нет информации по этому номеру отслеживания</Desc>
-                        </Text>
-                    </Info>
-                }
-                </StatusWrap>
-            </TrackingWrap>
-        </Container>
-    )
-}
-
-export async function getServerSideProps(context : {params: {trackingid: string}}) {
-
-    const response = await fetch(`https://volxenjs.vercel.app/api/trackinginfo`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            trackingnumber: `${context.params.trackingid}`
-        })
-    }) 
-
-    const data = await response.json()
-
-    return {
-      props: {data: data}
-    }
-}
 
 export default trackingidPage
