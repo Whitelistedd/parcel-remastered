@@ -1,30 +1,52 @@
-# TypeScript & Styled Components Next.js example
 
-This is a really simple project that show the usage of Next.js with TypeScript and Styled Components.
+# VolxFlex
 
-## Deploy your own
+# https://volxenjs.vercel.app/
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-typescript-styled-components)
+У меня возникла идея просто сделать клон netflix, потому что я хотел проверить свои навыки и сделать их «сложную» анимацию и дизайн страниц.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript-styled-components&project-name=with-typescript-styled-components&repository-name=with-typescript-styled-components)
+В этом проекте я сделал веб-сайт-клон netflix с логином, интро, профилями и страницей со всеми фильмами.
 
-## How to use it?
+## Установка и запуск проекта
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+Чтобы скопировать проект git на свой компьютер с помощью Visual Studio
 
-```bash
-npx create-next-app --example with-typescript-styled-components with-typescript-styled-components-app
-# or
-yarn create next-app --example with-typescript-styled-components with-typescript-styled-components-app
-# or
-pnpm create next-app -- --example with-typescript-styled-components with-typescript-styled-components-app
+```
+git pull https://github.com/Whitelistedd/parcel-remastered.git
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Установить все пакеты проекта
 
-## Notes
+```
+npm install
+```
 
-This is an amalgamation of the 2 existing examples:
+Для запуска сайта
 
-- [with-typescript](https://github.com/vercel/next.js/tree/canary/examples/with-typescript)
-- [with-styled-components](https://github.com/vercel/next.js/tree/canary/examples/with-styled-components)
+```
+npm run dev
+```
+
+## Развертывание
+
+Чтобы развернуть это на веб-сайте, просто запустите
+
+```
+npm run build
+```
+
+остальная часть будет зависеть от вашего хостинга
+
+## Создано с помощью
+
+NextJS,
+RestAPI,
+Typescript,
+Styled-компоненты,
+Auth0,
+Axios.
+
+
+## Авторы
+
+* **Volxen** - (https://github.com/Whitelistedd)
